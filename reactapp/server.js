@@ -44,12 +44,12 @@ app.get("/", function(req, res){
       res.send("hi");
 });
 
-app.get("/api/saved", function(req, res){
-      res.send("saveD route API");
-})
+app.post("/api/saved", function(req, res){
+    console.log("saveD route API");
+});
 
-app.get("/app/saved", function(req, res) {
-   res.send("saveD route APP");
+app.get("/api/saved", function(req, res) {
+   res.send("API saved route");
 });
 
 app.get("*", function(req, res) {
