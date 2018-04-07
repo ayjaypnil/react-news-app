@@ -2,9 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongojs = require("mongojs");
+const bluebird = require("bluebird");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+const NewsAPI = require("newsapi");
+const newsapi = new NewsAPI("95fc06a84c3242019177b79e752121ea");
 
 // Set the app up with morgan
 app.use(logger("dev"));
@@ -34,6 +38,22 @@ app.use(function(req, res, next) {
   );
   res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
   next();
+});
+
+
+app.get("/search/:q", function(req, res) {
+      // To query /v2/top-headlines
+      // All options passed to topHeadlines are optional, but you need to include at least one of them
+    var query = req.params.q;
+    newsapi.v2.everything({ 
+        q: query, 
+        pagesize: 5,
+        language: "en" 
+        })
+    .then(response => {
+        console.log(response);
+        res.json(response);
+    });
 });
 
 app.get("/", function(req, res) {
