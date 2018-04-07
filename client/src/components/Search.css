@@ -1,0 +1,17 @@
+#topButton{
+    margin-top: 25px;
+}
+
+#searchDiv{
+    background: rgb(236, 236, 236);
+    padding: 25px;
+    margin:45px 20px;
+}
+
+.form-group{
+    padding: 15px
+}
+
+#label{
+    padding-right: 15px;
+}
