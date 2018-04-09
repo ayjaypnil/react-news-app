@@ -11,7 +11,10 @@ class Search extends Component {
     };
   }
 
-
+  saveArticle = event => {
+    event.preventDefault();
+    alert("hit");
+  };
   
   searchNews = event => {
     event.preventDefault();
@@ -42,7 +45,7 @@ class Search extends Component {
             <input id="searchFrom" type="text" class="form-control" placeholder="YYYY-MM-DD" />
             <input id="searchTo" type="text" class="form-control" placeholder="YYYY-MM-DD" />
           </div>
-          <button type="submit" class="btn btn-default">
+          <button  type="submit" class="btn btn-default">
             Submit
           </button>
         </form>
@@ -60,7 +63,7 @@ class Search extends Component {
                       <h4 class="media-heading"><a target="_blank" href={b.url}>{b.title}</a> </h4>
                       <p> {b.description} </p>
                     </div>
-                    <button className="btn btn-default" data-id={b.title} onClick={this.saveArticle}>
+                    <button onClick={this.saveArticle} className="btn btn-default" data-title={b.title} data-title={b.title} onClick={this.saveArticle}>
                       save
                     </button>
                   </div>
