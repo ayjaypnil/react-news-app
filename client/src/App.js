@@ -12,7 +12,7 @@ class App extends Component {
         <Nav />
         <Jumbo />
         <Search />
-        <Results />
+   
       </div>
     );
   }

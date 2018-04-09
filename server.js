@@ -45,15 +45,17 @@ app.get("/search/:q", function(req, res) {
       // To query /v2/top-headlines
       // All options passed to topHeadlines are optional, but you need to include at least one of them
     var query = req.params.q;
-    newsapi.v2.everything({ 
-        q: query, 
+    newsapi.v2
+      .everything({
+        q: query,
         pagesize: 5,
-        language: "en" 
-        })
-    .then(response => {
+        language: "en",
+        sortBy: "relevancy"
+      })
+      .then(response => {
         console.log(response.articles);
         res.json(response);
-    });
+      });
 });
 
 app.get("/", function(req, res) {
