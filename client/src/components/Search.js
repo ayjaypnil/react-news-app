@@ -2,29 +2,27 @@ import "./Search.css";
 import React, { Component } from "react";
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       articles: []
     };
   }
 
+
+  
   searchNews = event => {
     event.preventDefault();
     let search = document.querySelector("#searchTerm");
     let searchTerm = search.value;
 
     // alert(searchTerm);
-    return fetch(`http://localhost:3001/search/${searchTerm}`, {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    }).then(res => res.json())
-  };
+      fetch(`/search/${searchTerm}`)
+      .then(response => response.json())
+      .then(json => console.log(json.articles))
 
+  };
 
   render() {
     return (
@@ -44,9 +42,7 @@ class Search extends Component {
         <button id="topButton" class="btn btn-primary">
           Generate Top Stories
         </button>
-          <p>
-            {this.state.articles}
-          </p>
+      
       </div>
     );
   }

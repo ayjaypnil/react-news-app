@@ -51,7 +51,7 @@ app.get("/search/:q", function(req, res) {
         language: "en" 
         })
     .then(response => {
-        console.log(response);
+        console.log(response.articles);
         res.json(response);
     });
 });
