@@ -18,8 +18,14 @@ class Search extends Component {
     let search = document.querySelector("#searchTerm");
     let searchTerm = search.value;
 
+    let searchFrom = document.querySelector("#searchFrom");
+    let from = searchFrom.value;
+
+    let searchTo = document.querySelector("#searchTo");
+    let to = searchTo.value;
+
     // alert(searchTerm);
-      fetch(`/search/${searchTerm}`)
+      fetch(`/search/${searchTerm}/${from}/${to}`)
       .then(response => response.json())
       // .then(json => console.log(json.articles))
       .then(json => this.setState({articles: json.articles}))
@@ -33,13 +39,13 @@ class Search extends Component {
               News Search:{" "}
             </label>
             <input id="searchTerm" type="text" class="form-control" />
+            <input id="searchFrom" type="text" class="form-control" placeholder="YYYY-MM-DD" />
+            <input id="searchTo" type="text" class="form-control" placeholder="YYYY-MM-DD" />
           </div>
           <button type="submit" class="btn btn-default">
             Submit
           </button>
         </form>
-
-
 
         <div>
           <div id="resultsDiv">
@@ -48,13 +54,17 @@ class Search extends Component {
                 <h3 class="panel-title">Results</h3>
               </div>
               <div id="resultsBody" class="panel-body">
-                {this.state.articles.map(b => <p key={b.source}>
-                    {b.title} <br />
-                    {b.description}
-                    <button data-id={b._id} onClick={this.props.deleteBook}>
+                {this.state.articles.map(b => (
+                  <div class="media" key={b.source}>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a target="_blank" href={b.url}>{b.title}</a> </h4>
+                      <p> {b.description} </p>
+                    </div>
+                    <button className="btn btn-default" data-id={b.title} onClick={this.saveArticle}>
                       save
                     </button>
-                  </p>)}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

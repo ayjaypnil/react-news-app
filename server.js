@@ -41,15 +41,19 @@ app.use(function(req, res, next) {
 });
 
 
-app.get("/search/:q", function(req, res) {
+app.get("/search/:q/:from/:to", function(req, res) {
       // To query /v2/top-headlines
       // All options passed to topHeadlines are optional, but you need to include at least one of them
     var query = req.params.q;
+    var fromU = req.params.from;
+    var toU = req.params.to;
     newsapi.v2
-      .everything({
+      .topHeadlines({
         q: query,
-        pagesize: 5,
+        pagesize: 10,
         language: "en",
+        from: fromU,
+        to: toU,
         sortBy: "relevancy"
       })
       .then(response => {
