@@ -78,8 +78,28 @@ app.post("/api/saved", function(req, res) {
     });
 });
 
-app.get("/api/saved", function(req, res) {
-  res.send("APP saved route");
+app.get("/saved", function(req, res) {
+  	db.articles.find({}, function(error, result){
+      res.json(result);
+      console.log(result);
+  });
+});
+
+app.delete("/delete/:id", function(req, res) {
+  var art_id = req.params.id;
+  console.log(art_id);
+  db.articles.remove(
+    {
+      _id: mongojs.ObjectID(art_id)
+    },
+    function(error, removed) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json(art_id);
+      }
+    }
+  );
 });
 
 // app.get("*", function(req, res) {

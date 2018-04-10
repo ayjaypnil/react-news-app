@@ -3,8 +3,7 @@ import React, { Component } from "react";
 
 class Nav extends Component {
   render() {
-    return (
-      <div className="navBar">
+    return <div className="navBar">
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -15,16 +14,15 @@ class Nav extends Component {
 
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="#">Search</a>
+                <a href="/index.html">Search</a>
               </li>
               <li>
-                <a href="#">Saved Articles</a>
+                <a href="">Saved Articles</a>
               </li>
             </ul>
           </div>
         </nav>
-      </div>
-    )
+      </div>;
   }
 }
 
