@@ -67,7 +67,15 @@ app.get("/", function(req, res) {
 });
 
 app.post("/api/saved", function(req, res) {
-  console.log("saveD route API");
+  console.log(req.body);
+  	db.articles.insert(req.body, function(error, savedArticle) {
+      // Log any errors
+      if (error) {
+        res.send(error);
+      } else {
+        res.json(savedArticle);
+      }
+    });
 });
 
 app.get("/api/saved", function(req, res) {

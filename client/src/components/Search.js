@@ -13,7 +13,19 @@ class Search extends Component {
 
   saveArticle = event => {
     event.preventDefault();
-    alert("hit");
+    
+    let saveTitle = event.target.getAttribute("data-title");
+    let saveUrl = event.target.getAttribute("data-url");
+    let saveDescription = event.target.getAttribute("data-description");
+
+    return fetch("/api/saved", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ saveTitle, saveUrl, saveDescription })
+    }).then(res => res.json())
   };
   
   searchNews = event => {
@@ -63,7 +75,7 @@ class Search extends Component {
                       <h4 class="media-heading"><a target="_blank" href={b.url}>{b.title}</a> </h4>
                       <p> {b.description} </p>
                     </div>
-                    <button onClick={this.saveArticle} className="btn btn-default" data-title={b.title} data-title={b.title} onClick={this.saveArticle}>
+                    <button onClick={this.saveArticle} className="btn btn-default" data-title={b.title} data-url={b.url} data-description={b.description} onClick={this.saveArticle}>
                       save
                     </button>
                   </div>
